@@ -6,14 +6,20 @@
 </template>
 
 <script>
+import PokemonService from './services/PokemonService';
+
 export default {
-    name: 'App',
-data() {
-    return{
-        pokemon: [],
-        selectedPokemon: null
+    data (){
+        return {
+            pokemon: [],
+            selectedPokemon: null
+        };
+    },
+    mounted(){
+        this.getPokemon();
     }
-}
+    
+
 }
 </script>
 
