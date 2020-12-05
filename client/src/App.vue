@@ -9,6 +9,7 @@
 import PokemonService from './services/PokemonService';
 
 export default {
+    name: 'app',
     data (){
         return {
             pokemon: [],
