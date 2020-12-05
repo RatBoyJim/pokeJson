@@ -23,7 +23,7 @@ const createRouter = function (collection) {
         const id = req.params.id;
         collection
         .findOne({ _id: ObjectID(id)})
-        .then((doc) =>res.json(deoc))
+        .then((doc) =>res.json(doc))
         .catch((err) => {
             console.error(err);
             res.status(500);
