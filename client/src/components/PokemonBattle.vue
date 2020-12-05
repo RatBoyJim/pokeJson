@@ -1,7 +1,9 @@
 <template>
   <div class="battle">
       <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackByFirstPokemon">{{pokemon1.moves[0].move.name}}</button>
+      <p>{{pokemon1.stats[0].base_stat}}</p>
       <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackBySecondPokemon">{{pokemon2.moves[0].move.name}}</button>
+      <p>{{pokemon1.stats[0].base_stat}}</p>
       <p v-if="pokemon1.isDefeated">{{pokemon1.name}} is defeated</p>
       <p v-if="pokemon2.isDefeated">{{pokemon2.name}} is defeated</p>
   </div>
