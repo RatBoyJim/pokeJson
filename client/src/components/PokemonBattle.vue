@@ -1,4 +1,4 @@
-<template>
+<!--<template>
   <div class="battle">
       <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackByFirstPokemon">{{pokemon1.moves[0].move.name}}</button>
       <p>{{pokemon1.stats[0].base_stat}}</p>
@@ -11,7 +11,7 @@
 
 <script>
 
-import Pokemon from './PokemonList'
+// import Pokemon from './PokemonList'
 
 export default {
 	name: 'battle-result',
@@ -53,10 +53,10 @@ export default {
       
 	}
     
-}
+// }
 
-</script>
+// </script>
 
-<style>
+// <style>
 
-</style>
+// </style>
