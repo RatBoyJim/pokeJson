@@ -1,6 +1,6 @@
 <template>
 <div>
-    <p v-for:="character in pokemon" >{{ pokemon.name }}</p>
+    
 </div>
 
 </template>
