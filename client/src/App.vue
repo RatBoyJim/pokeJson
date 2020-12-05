@@ -1,12 +1,13 @@
 <template>
 <div id="app">
-
+    <pokemon-list :pokemon="pokemon"></pokemon-list>
     <pokemon-detail v-if="selectedPokemon" :selectedPokemon="selectedPokemon"></pokemon-detail>
 </div>
 </template>
 
 <script>
 import PokemonService from './services/PokemonService';
+import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 
 export default {
@@ -21,7 +22,8 @@ export default {
         this.getPokemon();
     },
     components: {
-        'pokemon-detail': PokemonDetails
+        'pokemon-detail': PokemonDetails,
+        'pokemon-list': PokemonList
     }
     
 

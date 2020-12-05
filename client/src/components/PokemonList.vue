@@ -1,16 +1,18 @@
 <template>
   <div id="pokemonsList">
-          <pokemon v-for="(pokemon, index) in pokemons" :pokemon="pokemon" :key="index"></pokemon-list>
+          <pokemon-list v-for="(character, index) in pokemon" :pokemon="pokemon" :key="index"></pokemon-list>
   </div>
 </template>
 
 <script>
-
+ 
+import PokemonDetails from './PokemonDetails.vue'
 
 export default {
     name: "pokemon-list",
+    props: ["pokemon"],
     components: {
-        'pokemon': Pokemon
+        'pokemon-detail': PokemonDetails
     },
 }
 </script>
