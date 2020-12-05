@@ -1,6 +1,9 @@
 <template>
   <div class="battle">
       <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackByFirstPokemon">{{pokemon1.moves[0].move.name}}</button>
+      <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackBySecondPokemon">{{pokemon2.moves[0].move.name}}</button>
+      <p v-if="pokemon1.isDefeated">{{pokemon1.name}} is defeated</p>
+      <p v-if="pokemon2.isDefeated">{{pokemon2.name}} is defeated</p>
   </div>
 </template>
 
@@ -34,8 +37,18 @@ export default {
             .then(data => this.pokemon2Moves = data)
     },
 		attackByFirstPokemon(pokemon1, pokemon2){
-			return pokemon2.stats[0].base_stat = pokemon2.stats[0].base_stat - pokemon1Moves.moves[0].pp
-			}
+      return pokemon2.stats[0].base_stat = pokemon2.stats[0].base_stat - pokemon1Moves.moves[0].pp
+      if (pokemon2.stats[0].base_stat == 0) {
+        pokemon2.isDefeated = true;
+      }
+      },
+    attackBySecondPokemon(pokemon1, pokemon2){
+      return pokemon1.stats[0].base_stat = pokemon1.stats[0].base_stat - pokemon2Moves.moves[0].pp
+      if (pokemon1.stats[0].base_stat == 0) {
+        pokemon1.isDefeated = true;
+      }
+      },
+      
 	}
     
 }
