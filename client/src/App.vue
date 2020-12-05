@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <pokemon-list :pokemon="pokemon"></pokemon-list>
+    <pokemon-list :pokemon="pokemon" :selectedPokemon="selectedPokemon"></pokemon-list>
     <pokemon-detail v-if="selectedPokemon" :selectedPokemon="selectedPokemon"></pokemon-detail>
 </div>
 </template>
@@ -19,12 +19,22 @@ export default {
         };
     },
     mounted(){
-        this.getPokemon();
+        // this.getPokemon();
+        fetch('https://pokeapi.co/api/v2/pokemon')
+        .then(res => res.json())
+        .then(pokemon => this.pokemon = pokemon)
     },
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList
-    }
+    },
+    // methods: {
+    //     getPokemon(){
+    //     return fetch('https://pokeapi.co/api/v2/pokemon')
+    //     .then(res => res.json())
+    //     .then(pokemon => this.pokemon = pokemon)
+    // },
+    // }
     
 
 }

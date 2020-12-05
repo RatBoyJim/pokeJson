@@ -1,18 +1,21 @@
 <template>
   <div id="pokemonsList">
-          <pokemon-list v-for="(character, index) in pokemon" :pokemon="pokemon" :key="index"></pokemon-list>
+
+    <label for="pokemon_select">Select a Pokemon:</label>
+    <select id="pokemon_select" v-model="selectedPokemon">
+      <option disabled value="">Select a Pokemon</option>
+      <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="pokemon" :key="index">{{pokemon.results.index.name}}</option>
+    </select>
   </div>
 </template>
 
 <script>
- 
-import PokemonDetails from './PokemonDetails.vue'
 
 export default {
     name: "pokemon-list",
-    props: ["pokemon"],
+    props: ["pokemon", "selectedPokemon"],
     components: {
-        'pokemon-detail': PokemonDetails
+       
     },
 }
 </script>
