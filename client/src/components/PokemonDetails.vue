@@ -9,7 +9,8 @@
 
 
 export default {
-    name: 'pokemon-detail'
+    name: 'pokemon-detail',
+    props:['pokemon']
 }
 </script>
 
