@@ -19,20 +19,23 @@ export default {
         };
     },
     mounted(){
-        // this.getPokemon();
-        fetch('https://pokeapi.co/api/v2/pokemon')
-        .then(res => res.json())
-        .then(pokemon => this.pokemon = pokemon)
+        this.fetchPokemon();
     },
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList
     },
     methods: {
+<<<<<<< HEAD
         getPokemon(){
         return fetch('https://pokeapi.co/api/v2/pokemon')
         .then(res => res.json())
         .then(pokemon => this.pokemon = pokemon)
+=======
+        fetchPokemon(){
+            PokemonService.getPokemon()
+                .then(pokemon => this.pokemon = pokemon.results)
+>>>>>>> develop
     },
     }
     
