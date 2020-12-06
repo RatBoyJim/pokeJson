@@ -21,8 +21,8 @@ export default {
     mounted(){
         // this.getPokemon();
         fetch('https://pokeapi.co/api/v2/pokemon')
-        .then(res => res.json())
-        .then(pokemon => this.pokemon = pokemon)
+        .then(res => res.json()) 
+        .then(pokemon => this.pokemon = pokemon.results)
     },
     components: {
         'pokemon-detail': PokemonDetails,
