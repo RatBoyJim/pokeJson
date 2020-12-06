@@ -1,11 +1,19 @@
 <template>
 <div id="app">
-    <pokemon-list :pokemon="pokemon" :selectedPokemon="selectedPokemon"></pokemon-list>
-    <pokemon-detail :selectedPokemon="selectedPokemon"></pokemon-detail>
+    <div>
+    <label for="pokemon_select">Select a Pokemon:</label>
+    <select id="pokemon_select" v-model="selectedPokemon">
+      <option disabled value="">Select a Pokemon</option>
+      <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
+    </select>
+  </div>
+    <pokemon-list></pokemon-list>
+    <pokemon-detail :selectedPokemon='selectedPokemon'></pokemon-detail>
 </div>
 </template>
 
 <script>
+import { eventBus } from '@/main.js';
 import PokemonService from './services/PokemonService';
 import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
@@ -16,11 +24,15 @@ export default {
         return {
             pokemon: [],
             selectedPokemon: null
+            
         };
     },
     mounted(){
         this.fetchPokemon();
-        this.fetchSelectedPokemon();
+        // this.fetchSelectedPokemon();
+
+        eventBus.$on('pokemon-selected', pokemon => (this.selectedPokemon = pokemon));
+        
     },
     components: {
         'pokemon-detail': PokemonDetails,
@@ -31,10 +43,10 @@ export default {
             PokemonService.getPokemon()
                 .then(pokemon => this.pokemon = pokemon.results)
     },
-        fetchSelectedPokemon(){
-            PokemonService.getSelectedPokemon()
-                .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
-        }
+        // fetchSelectedPokemon(){
+        //     PokemonService.getSelectedPokemon()
+        //         .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
+        // }
     }
     
 
