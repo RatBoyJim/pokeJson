@@ -19,22 +19,18 @@ export default {
         };
     },
     mounted(){
-        // this.getPokemon();
-        fetch('https://pokeapi.co/api/v2/pokemon')
-        .then(res => res.json()) 
-        .then(pokemon => this.pokemon = pokemon.results)
+        this.fetchPokemon();
     },
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList
     },
-    // methods: {
-    //     getPokemon(){
-    //     return fetch('https://pokeapi.co/api/v2/pokemon')
-    //     .then(res => res.json())
-    //     .then(pokemon => this.pokemon = pokemon)
-    // },
-    // }
+    methods: {
+        fetchPokemon(){
+            PokemonService.getPokemon()
+                .then(pokemon => this.pokemon = pokemon.results)
+    },
+    }
     
 
 }
