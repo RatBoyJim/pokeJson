@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <pokemon-list :pokemon="pokemon" :selectedPokemon="selectedPokemon"></pokemon-list>
-    <pokemon-detail :selectedPokemon="selectedPokemon"></pokemon-detail>
+    <pokemon-detail :selectedPokemon='selectedPokemon'></pokemon-detail>
 </div>
 </template>
 
@@ -20,7 +20,10 @@ export default {
     },
     mounted(){
         this.fetchPokemon();
-        this.fetchSelectedPokemon();
+        // this.fetchSelectedPokemon();
+
+        eventBus.$on('pokemon-selected', pokemon => (this.selectedPokemon = pokemon));
+        
     },
     components: {
         'pokemon-detail': PokemonDetails,
@@ -31,10 +34,10 @@ export default {
             PokemonService.getPokemon()
                 .then(pokemon => this.pokemon = pokemon.results)
     },
-        fetchSelectedPokemon(){
-            PokemonService.getSelectedPokemon()
-                .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
-        }
+        // fetchSelectedPokemon(){
+        //     PokemonService.getSelectedPokemon()
+        //         .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
+        // }
     }
     
 
