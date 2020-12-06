@@ -1,7 +1,7 @@
 <template>
 <div id="app">
     <pokemon-list :pokemon="pokemon" :selectedPokemon="selectedPokemon"></pokemon-list>
-    <pokemon-detail v-if="selectedPokemon" :selectedPokemon="selectedPokemon"></pokemon-detail>
+    <pokemon-detail :selectedPokemon="selectedPokemon"></pokemon-detail>
 </div>
 </template>
 
@@ -20,6 +20,7 @@ export default {
     },
     mounted(){
         this.fetchPokemon();
+        this.fetchSelectedPokemon();
     },
     components: {
         'pokemon-detail': PokemonDetails,
@@ -30,6 +31,10 @@ export default {
             PokemonService.getPokemon()
                 .then(pokemon => this.pokemon = pokemon.results)
     },
+        fetchSelectedPokemon(){
+            PokemonService.getSelectedPokemon()
+                .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
+        }
     }
     
 
