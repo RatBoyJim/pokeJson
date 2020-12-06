@@ -8,7 +8,8 @@
     </select>
   </div>
     <pokemon-list></pokemon-list>
-    <pokemon-detail :selectedPokemon='selectedPokemon'></pokemon-detail>
+    <pokemon-detail :selectedPokemon='selectedPokemon' :pokemonDetails='pokemonDetails'></pokemon-detail>
+    <battle-result :pokemon="pokemon"></battle-result>
 </div>
 </template>
 
@@ -17,18 +18,21 @@ import { eventBus } from '@/main.js';
 import PokemonService from './services/PokemonService';
 import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
+import PokemonBattle from './components/PokemonBattle.vue';
 
 export default {
     name: 'app',
     data (){
         return {
             pokemon: [],
-            selectedPokemon: null
+            selectedPokemon: null,
+            pokemonDetails: null
             
         };
     },
     mounted(){
         this.fetchPokemon();
+        this.fetchPokemonDetails();
         // this.fetchSelectedPokemon();
 
         eventBus.$on('pokemon-selected', pokemon => (this.selectedPokemon = pokemon));
@@ -36,13 +40,23 @@ export default {
     },
     components: {
         'pokemon-detail': PokemonDetails,
-        'pokemon-list': PokemonList
+        'pokemon-list': PokemonList,
+        'battle-result': PokemonBattle
     },
     methods: {
         fetchPokemon(){
             PokemonService.getPokemon()
                 .then(pokemon => this.pokemon = pokemon.results)
     },
+    fetchPokemonDetails(){
+    // const detailsURL = this.selectedPokemon.url
+    return fetch("https://pokeapi.co/api/v2/pokemon/2/").then(res => res.json()).then(data => this.pokemonDetails = data)
+    
+//     Promise.all(detailsPromises)
+//   .then((data) => {
+//     this.pokemonDetails = data;
+//   })
+}
         // fetchSelectedPokemon(){
         //     PokemonService.getSelectedPokemon()
         //         .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
