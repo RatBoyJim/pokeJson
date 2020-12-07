@@ -24,7 +24,7 @@ export default {
             selectedPokemon2: null,
             pokemonDetails1: null,
             pokemonDetails2: null,
-            pokemon1Moves: []
+            pokemon1Moves: null,
             
         };
     },
@@ -33,7 +33,7 @@ export default {
 
         eventBus.$on('pokemon-selected-1', (pokemon) => {
             this.selectedPokemon1 = {name: pokemon.name, url: pokemon.url};
-            this.fetchPokemonDetails1()
+            this.fetchPokemonDetails1();
             this.fetchMovesP1()
         }),
         eventBus.$on('pokemon-selected-2', (pokemon) => {
