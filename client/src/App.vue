@@ -2,8 +2,8 @@
 <div id="app">
     <pokemon-title></pokemon-title>
     <pokemon-list :pokemon='pokemon'></pokemon-list>
-    <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
-    <battle-result  :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemon1Moves="pokemon1Moves"></battle-result>
+    <pokemon-detail v-if="pokemon" :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
+    <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1"></battle-result>
 </div>
 </template>
 
@@ -24,7 +24,7 @@ export default {
             selectedPokemon2: null,
             pokemonDetails1: null,
             pokemonDetails2: null,
-            pokemon1Moves: []
+            pokemonMoves1: []
             
         };
     },
@@ -67,7 +67,7 @@ export default {
             console.log(movesURL);
             return fetch(movesURL)
             .then(response => response.json())
-            .then(data => this.pokemon1Moves = data)
+            .then(data => this.pokemonMoves1 = data)
     },
     }
 

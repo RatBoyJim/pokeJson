@@ -17,12 +17,12 @@
 export default {
   name: 'battle-result',
   props:['pokemonDetails1', 'pokemonDetails2', 'pokemon1Moves'],
-	data() {
-		return {
-            pokemon1Moves: [],
-            pokemon2Moves: []
-		}
-    },
+	// data() {
+	// 	return {
+  //           pokemon1Moves: [],
+  //           pokemon2Moves: []
+	// 	}
+  //   },
     mounted() {
     // this.fetchMovesP1();
     // this.fetchMovesP2();
