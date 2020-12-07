@@ -1,7 +1,6 @@
 <template>
 <div id="app">
-    <pokemon-title></pokemon-title>   
-    <!-- <p class="p">test</p> -->
+    <pokemon-title></pokemon-title>  
     
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
@@ -68,14 +67,14 @@ export default {
 </script>
 
 <style>
-/* @font-face {
-    font-family: Pokemon;
-    src: url(/fonts/Pokemon.ttf) format("ttf");
+@font-face {
+    font-family: 'Pokemon';
+    src: url(fonts/Pokemon.ttf);
 
 }
 
 .p{
     font-family: Pokemon;
-} */
+}
 
 </style>
