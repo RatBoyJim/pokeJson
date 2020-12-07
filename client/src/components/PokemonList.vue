@@ -7,7 +7,7 @@
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
     <label for="pokemon_select">Select Pokemon 2:</label>
-    <select id="pokemon_select" v-model="selectedPokemon2">
+    <select id="pokemon_select" v-model="selectedPokemon2" v-on:change="fetchPokemonDetails2">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
@@ -32,6 +32,9 @@ export default {
     methods:{
       fetchPokemonDetails1(){
         eventBus.$emit('pokemon-selected-1', this.selectedPokemon1)
+      },
+      fetchPokemonDetails2(){
+        eventBus.$emit('pokemon-selected-2', this.selectedPokemon2)
       }
     }
 }

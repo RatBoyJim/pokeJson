@@ -8,7 +8,7 @@
     </select>
   </div> -->
     <pokemon-list :pokemon='pokemon'></pokemon-list>
-    <pokemon-detail :selectedPokemon='selectedPokemon1' :pokemonDetails='pokemonDetails1'></pokemon-detail>
+    <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <!-- <battle-result :pokemon="pokemon"></battle-result> -->
 </div>
 </template>
@@ -25,26 +25,23 @@ export default {
     data (){
         return {
             pokemon: [],
-<<<<<<< HEAD
-            selectedPokemon: null,
-            pokemonDetails: null,
-
-=======
             selectedPokemon1: null,
             selectedPokemon2: null,
-            pokemonDetails1: null
->>>>>>> develop
+            pokemonDetails1: null,
+            pokemonDetails2: null
             
         };
     },
     mounted(){
         this.fetchPokemon();
-        // this.fetchPokemonDetails();
-        // this.fetchSelectedPokemon();
 
         eventBus.$on('pokemon-selected-1', (pokemon) => {
             this.selectedPokemon1 = {name: pokemon.name, url: pokemon.url};
             this.fetchPokemonDetails1()
+        }),
+        eventBus.$on('pokemon-selected-2', (pokemon) => {
+            this.selectedPokemon2 = {name: pokemon.name, url: pokemon.url};
+            this.fetchPokemonDetails2()
         })
         
     },
@@ -61,18 +58,13 @@ export default {
     fetchPokemonDetails1(){
     const pokemonName = this.selectedPokemon1.url
     return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails1 = data)
-    
-//     Promise.all(detailsPromises)
-//   .then((data) => {
-//     this.pokemonDetails = data;
-//   })
-}
-        // fetchSelectedPokemon(){
-        //     PokemonService.getSelectedPokemon()
-        //         .then(selectedPokemon => this.selectedPokemon = selectedPokemon)
-        // }
+    },
+    fetchPokemonDetails2(){
+    const pokemonName = this.selectedPokemon2.url
+    return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails2 = data)
+
     }
-    
+    }
 
 }
 </script>
