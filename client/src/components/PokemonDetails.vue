@@ -1,5 +1,5 @@
 <template>
-<div class="pokemon-detail">
+<div class="pokemon-detail" v-if="pokemonDetails">
     <img class="lrg-pokemon" :src="pokemonDetails.sprites.front_default " />
     <h3>Name: {{ pokemonDetails.name }}</h3>
     <h4>Height: {{ pokemonDetails.height}}</h4>
