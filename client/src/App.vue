@@ -1,12 +1,8 @@
 <template>
 <div id="app">
-    <!-- <div>
-    <label for="pokemon_select">Select a Pokemon:</label>
-    <select id="pokemon_select" v-model="selectedPokemon" v-on:change="fetchPokemonDetails">
-      <option disabled value="">Select a Pokemon</option>
-      <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
-    </select>
-  </div> -->
+    <pokemon-title></pokemon-title>   
+    <!-- <p class="p">test</p> -->
+    
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <!-- <battle-result :pokemon="pokemon"></battle-result> -->
@@ -19,6 +15,7 @@ import PokemonService from './services/PokemonService';
 import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 import PokemonBattle from './components/PokemonBattle.vue';
+import PokemonTitle from './components/PokemonTitle';
 
 export default {
     name: 'app',
@@ -48,7 +45,8 @@ export default {
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList,
-        'battle-result': PokemonBattle
+        'battle-result': PokemonBattle,
+        'pokemon-title':PokemonTitle,
     },
     methods: {
         fetchPokemon(){
@@ -70,5 +68,14 @@ export default {
 </script>
 
 <style>
+/* @font-face {
+    font-family: Pokemon;
+    src: url(/fonts/Pokemon.ttf) format("ttf");
+
+}
+
+.p{
+    font-family: Pokemon;
+} */
 
 </style>
