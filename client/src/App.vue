@@ -1,5 +1,6 @@
 <template>
 <div id="app">
+    <pokemon-title></pokemon-title>
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <battle-result  :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemon1Moves="pokemon1Moves"></battle-result>
@@ -12,6 +13,7 @@ import PokemonService from './services/PokemonService';
 import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 import PokemonBattle from './components/PokemonBattle.vue';
+import PokemonTitle from './components/PokemonTitle';
 
 export default {
     name: 'app',
@@ -43,7 +45,8 @@ export default {
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList,
-        'battle-result': PokemonBattle
+        'battle-result': PokemonBattle,
+        'pokemon-title':PokemonTitle,
     },
     methods: {
         fetchPokemon(){
@@ -72,5 +75,14 @@ export default {
 </script>
 
 <style>
+/* @font-face {
+    font-family: Pokemon;
+    src: url(/fonts/Pokemon.ttf) format("ttf");
+
+}
+
+.p{
+    font-family: Pokemon;
+} */
 
 </style>

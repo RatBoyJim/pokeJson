@@ -2,12 +2,12 @@
   <div id="pokemonsList">
 
     <label for="pokemon_select">Select Pokemon 1:</label>
-    <select id="pokemon_select" v-model="selectedPokemon1" v-on:change="fetchPokemonDetails1">
+    <select id="pokemon_select1" v-model="selectedPokemon1" v-on:change="fetchPokemonDetails1">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
-    <label for="pokemon_select">Select Pokemon 2:</label>
-    <select id="pokemon_select" v-model="selectedPokemon2" v-on:change="fetchPokemonDetails2">
+    <label id="pokemon2_label" for="pokemon_select">Select Pokemon 2:</label>
+    <select id="pokemon_select2" v-model="selectedPokemon2" v-on:change="fetchPokemonDetails2">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
@@ -41,6 +41,9 @@ export default {
 </script>
 
 <style>
+#pokemon2_label {
+  margin-left: 250px; 
+}
 
 </style>
 
