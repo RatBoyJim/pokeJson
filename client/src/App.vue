@@ -2,7 +2,7 @@
 <div id="app">
     <div>
     <label for="pokemon_select">Select a Pokemon:</label>
-    <select id="pokemon_select" v-model="selectedPokemon">
+    <select id="pokemon_select" v-model="selectedPokemon" v-on:change="fetchPokemonDetails">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
@@ -49,8 +49,8 @@ export default {
                 .then(pokemon => this.pokemon = pokemon.results)
     },
     fetchPokemonDetails(){
-    // const detailsURL = this.selectedPokemon.url
-    return fetch("https://pokeapi.co/api/v2/pokemon/2/").then(res => res.json()).then(data => this.pokemonDetails = data)
+    const pokemonName = this.selectedPokemon.url
+    return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails = data)
     
 //     Promise.all(detailsPromises)
 //   .then((data) => {
