@@ -26,7 +26,8 @@ export default {
         return {
             pokemon: [],
             selectedPokemon: null,
-            pokemonDetails: null
+            pokemonDetails: null,
+
             
         };
     },
