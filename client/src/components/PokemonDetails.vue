@@ -54,6 +54,7 @@ export default {
         background-color: lightgoldenrodyellow;
         padding: 10px;
         margin-right: 300px;
+        margin-top: 50px;
         font-family: 'Fira Sans', sans-serif;
         background-image: url("https://cutewallpaper.org/21/pokemon-card-backgrounds/Backround-Pokemon-Card-Related-Keywords-and-Suggestions-.png");
     }
