@@ -5,7 +5,7 @@ export default {
     getPokemon(){
         return fetch(apiURL)
         .then(res => res.json()) 
-    },
+    }
     // getSelectedPokemon(){
     //     return fetch(selectedPokemonURL)
     //     .then(res => res.json())
