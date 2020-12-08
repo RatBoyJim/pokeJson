@@ -26,7 +26,8 @@ export default {
             selectedPokemon1: null,
             selectedPokemon2: null,
             pokemonDetails1: null,
-            pokemonDetails2: null
+            pokemonDetails2: null,
+            winsAndLosses:[]
             
         };
     },
@@ -41,6 +42,8 @@ export default {
             this.selectedPokemon2 = {name: pokemon.name, url: pokemon.url};
             this.fetchPokemonDetails2()
         })
+
+        this.fetchWinsAndLosses();
         
     },
     components: {
@@ -63,6 +66,11 @@ export default {
     const pokemonName = this.selectedPokemon2.url
     return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails2 = data)
 
+    },
+
+    fetchWinsAndLosses(){
+        PokemonService.getWinsAndLosses()
+        .then(results => this.winsAndLosses = results)
     }
     }
 
