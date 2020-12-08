@@ -16,29 +16,21 @@ import { GChart } from 'vue-google-charts'
 
 export default {
     name: "pokemon-chart",
-    props: ["winsAndLosses"],
+    props: ["chartDataWins", "chartDataLosses"],
     data () {
         return{
-            chartDataWins:[
-                ['Pokemon', 'Wins'],
-            ],
-            chartDataLosses:[
-                ['Pokemon', 'Losses'],
-            ]
+            
         }
     },
+    
     components: {
         GChart
     },
     mounted(){
-        getArray(winsAndLosses)
+        
     },
     methods: {
-        getArray(winsAndLosses){
-            for (item in winsAndLosses) {
-                result = Object.values(obj).map((values) => [])
-            }
-        },
+        
     },
 }
 
