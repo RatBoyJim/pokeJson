@@ -5,6 +5,7 @@
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <!-- <battle-result :pokemon="pokemon"></battle-result> -->
+    <pokemon-chart></pokemon-chart>
 </div>
 </template>
 
@@ -15,6 +16,7 @@ import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 import PokemonBattle from './components/PokemonBattle.vue';
 import PokemonTitle from './components/PokemonTitle';
+import PokemonChart from './components/PokemonChart';
 
 export default {
     name: 'app',
@@ -46,6 +48,7 @@ export default {
         'pokemon-list': PokemonList,
         'battle-result': PokemonBattle,
         'pokemon-title':PokemonTitle,
+        'pokemon-chart': PokemonChart,
     },
     methods: {
         fetchPokemon(){
