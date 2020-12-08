@@ -84,6 +84,26 @@ export default {
             .then(()=> this.fetchWinsAndLosses())
 
         });
+        eventBus.$on('pokemon-2-win', (pokemonDetails2) => {
+            const updatedPokemon = {
+                name:pokemonDetails2.name,
+                
+            };
+            console.log(updatedPokemon);
+            PokemonService.updateWins(updatedPokemon)
+            .then(()=> this.fetchWinsAndLosses())
+
+        });
+        eventBus.$on('pokemon-2-win', (pokemonDetails1) => {
+            const updatedPokemon = {
+                name:pokemonDetails1.name,
+                
+            };
+            console.log(updatedPokemon);
+            PokemonService.updateLosses(updatedPokemon)
+            .then(()=> this.fetchWinsAndLosses())
+
+        });
         
 
         this.fetchWinsAndLosses();

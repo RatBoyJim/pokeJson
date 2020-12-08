@@ -28,14 +28,16 @@ export default {
         eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
         eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
         eventBus.$emit('pokemon-1-win', this.pokemonDetails1)
-        eventBus.$emit('pokemon-1-win', this.pokemonDetails2)
+        eventBus.$emit('pokemon-1-win', this.pokemonDetails2);
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
       }},
     attackBySecondPokemon(){
       if (this.pokemonDetails1.stats[0].base_stat < this.pokemonMoves2.pp) {
         eventBus.$emit('set-health-p1', this.pokemonDetails1.stats[0].base_stat)
-        eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true);
+        eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true)
+        eventBus.$emit('pokemon-2-win', this.pokemonDetails2)
+        eventBus.$emit('pokemon-2-win', this.pokemonDetails1);
       }else{
         eventBus.$emit('set-health-p1', this.pokemonMoves2.pp)
       
