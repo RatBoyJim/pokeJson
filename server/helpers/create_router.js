@@ -61,12 +61,12 @@ const createRouter = function (collection) {
     });
 
     //UPDATE
-    router.put('/:id', (req, res) =>{
-        const id = req.params.id;
+    router.put('/:name', (req, res) =>{
+        const name = req.params.name;
         const updatedData = req.body;
         collection
         .findOneAndUpdate(
-            {_id: ObjectID(id)},
+            {name: name},
             {$set: updatedData},
             {returnOriginal: false}
         )
