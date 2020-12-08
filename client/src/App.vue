@@ -5,7 +5,7 @@
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <!-- <battle-result :pokemon="pokemon"></battle-result> -->
-    <pokemon-chart :winsAndLosses='winsAndLosses'></pokemon-chart>
+    <pokemon-chart :chartDataWins='chartDataWins' :chartDataLosses='chartDataLosses'></pokemon-chart>
 </div>
 </template>
 
@@ -27,7 +27,14 @@ export default {
             selectedPokemon2: null,
             pokemonDetails1: null,
             pokemonDetails2: null,
-            winsAndLosses:[]
+            winsAndLosses:[],
+            chartDataWins:[
+                ['Pokemon', 'Wins'],
+                
+            ],
+            chartDataLosses:[
+                ['Pokemon', 'Losses'],
+            ]
             
         };
     },
@@ -44,6 +51,9 @@ export default {
         })
 
         this.fetchWinsAndLosses();
+        
+    },
+    computed:{
         
     },
     components: {
@@ -70,7 +80,21 @@ export default {
 
     fetchWinsAndLosses(){
         PokemonService.getWinsAndLosses()
-        .then(results => this.winsAndLosses = results)
+        .then(results => {
+            this.winsAndLosses = results
+        
+            let newWins = results.map(result => {
+                return [result.name, result.wins]
+            })
+            this.chartDataWins = [['pokemon', 'wins'], ...newWins]
+
+            let newLosses = results.map(result => {
+                return [result.name, result.losses]
+            })
+            this.chartDataLosses = [['pokemon', 'losses'], ...newLosses]
+        
+        })
+        
     }
     }
 
