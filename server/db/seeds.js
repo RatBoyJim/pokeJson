@@ -4,99 +4,97 @@ db.dropDatabase();
 db.pokemon.insertMany([
     {
         name: "bulbasaur",
-        wins: 0,
-        losses: 0
+        wins: 2,
+        losses: 5
     },
     {
         name: "ivysaur",
-        wins: 0,
-        losses: 0
+        wins: 1,
+        losses: 3
     },
     {
         name: "venusaur",
-        wins: 0,
-        losses: 0
+        wins: 4,
+        losses: 1
     },
     {
         name: "charmeleon",
-        wins: 0,
-        losses: 0
+        wins: 5,
+        losses: 2
     },
     {
         name: "charizard",
-        wins: 0,
-        losses: 0
+        wins: 3,
+        losses: 3
     },
     {
         name: "squirtle",
-        wins: 0,
-        losses: 0
+        wins: 2,
+        losses: 3
     },
     {
         name: "wartortle",
-        wins: 0,
-        losses: 0
+        wins: 6,
+        losses: 4
     },
     {
         name: "blastoise",
-        wins: 0,
-        losses: 0
+        wins: 4,
+        losses: 5
     },
     {
         name: "caterpie",
-        wins: 0,
-        losses: 0
+        wins: 1,
+        losses: 2
     },
     {
         name: "metapod",
-        wins: 0,
-        losses: 0
+        wins: 1,
+        losses: 1
     },
     {
         name: "butterfree",
-        wins: 0,
-        losses: 0
+        wins: 2,
+        losses: 5
     },
     {
         name: "weedle",
-        wins: 0,
-        losses: 0
+        wins: 5,
+        losses: 2
     },
     {
         name: "kakuna",
-        wins: 0,
-        losses: 0
+        wins: 3,
+        losses: 3
     },
     {
         name: "beedrill",
-        wins: 0,
-        losses: 0
+        wins: 4,
+        losses: 3
     },
     {
         name: "pidgey",
-        wins: 0,
-        losses: 0
+        wins: 1,
+        losses: 3
     },
     {
         name: "pidgeotto",
-        wins: 0,
-        losses: 0
+        wins: 6,
+        losses: 2
     },
     {
         name: "pidgeot",
-        wins: 0,
-        losses: 0
+        wins: 4,
+        losses: 3
     },
     {
         name: "rattata",
-        wins: 0,
+        wins: 5,
         losses: 0
     },
     {
         name: "raticate",
         wins: 0,
-        losses: 0
+        losses: 3
     }
-
-
 ])
