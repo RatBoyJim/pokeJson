@@ -93,8 +93,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-justify: center;
-  text-align: center;
+  align-items: center;
 }
 
 .p2-container > button{
@@ -111,15 +110,14 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-justify: center;
-  text-align: center;
+  align-items: center;
 }
 .result-container {
   border: solid 10px rgb(255, 217, 0);
   border-radius: 5px;
   width: 100px;
   height: 140px;
-  /* background-color: rgb(250, 210, 210); */
+  background-color: rgb(#888);
   padding: 10px;
   justify-content: center;
   /* margin-right: 300px; */
