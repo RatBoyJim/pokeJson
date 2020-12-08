@@ -66,7 +66,7 @@ export default {
 }
 
 
-border: solid 10px rgb(255, 217, 0);
+/* border: solid 10px rgb(255, 217, 0);
         border-radius: 5px;
         width: 150px;
         background-color: lightgoldenrodyellow;
@@ -74,5 +74,5 @@ border: solid 10px rgb(255, 217, 0);
         margin-right: 300px;
         margin-top: 50px;
         font-family: 'Fira Sans', sans-serif;
-        background-image: url("https://cutewallpaper.org/21/pokemon-card-backgrounds/Backround-Pokemon-Card-Related-Keywords-and-Suggestions-.png");
+        background-image: url("https://cutewallpaper.org/21/pokemon-card-backgrounds/Backround-Pokemon-Card-Related-Keywords-and-Suggestions-.png"); */
 </style>
