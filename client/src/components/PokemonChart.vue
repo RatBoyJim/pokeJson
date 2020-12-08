@@ -15,28 +15,25 @@
 import { GChart } from 'vue-google-charts'
 
 export default {
+    name: "pokemon-chart",
+    props: ["chartDataWins", "chartDataLosses"],
     data () {
         return{
-            chartDataWins:[
-                ['Pokemon', 'Wins'],
-                ['Pikachu', 5],
-                ['Charmander', 2],
-                ['Bulbasaur', 4],
-                ['Weedle', 6]
-            ],
-            chartDataLosses:[
-                ['Pokemon', 'Losses'],
-                ['Pikachu', 5],
-                ['Charmander', 2],
-                ['Bulbasaur', 4],
-                ['Weedle', 6]
-            ]
+            
         }
     },
+    
     components: {
         GChart
-    }
+    },
+    mounted(){
+        
+    },
+    methods: {
+        
+    },
 }
+
 </script>
 
 <style>

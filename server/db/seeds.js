@@ -18,6 +18,11 @@ db.pokemon.insertMany([
         losses: 1
     },
     {
+        name: "charmander",
+        wins: 4,
+        losses: 1
+    },
+    {
         name: "charmeleon",
         wins: 5,
         losses: 2
