@@ -179,6 +179,10 @@ export default {
 
 }
 
+body{
+    padding: 1% 1% 0%;
+}
+
 .p{
     font-family: Pokemon;
 }

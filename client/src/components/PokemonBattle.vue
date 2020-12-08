@@ -12,7 +12,7 @@
       <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon">Use a potion ({{pokemonPotions2}})</button>
       <p class="pokemon-detail">Remaining HP: {{pokemonDetails2.stats[0].base_stat}}</p>
       </div>
-      <div class="result">
+      <div class="result-container">
       <p v-if="pokemon1Defeated">{{pokemonDetails1.name}} is defeated</p>
       <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
       </div>
@@ -87,10 +87,12 @@ export default {
   text-align: center;
   border: solid 10px rgb(255, 217, 0);
   border-radius: 5px;
+  font-family: Pokemon;
 }
 .p1stuff{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   text-justify: center;
   text-align: center;
 }
@@ -103,23 +105,42 @@ export default {
   text-align: center;
   border: solid 10px rgb(255, 217, 0);
   border-radius: 5px;
+  font-family: Pokemon;
 }
 .p2stuff{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-justify: center;
+  text-align: center;
 }
-.result {
+.result-container {
   border: solid 10px rgb(255, 217, 0);
-        border-radius: 5px;
-        /* width: 100px; */
-        background-color: rgb(250, 210, 210);
-        padding: 10px;
-        /* margin-right: 300px; */
-        /* margin-top: 50px; */
+  border-radius: 5px;
+  width: 100px;
+  height: 140px;
+  /* background-color: rgb(250, 210, 210); */
+  padding: 10px;
+  justify-content: center;
+  /* margin-right: 300px; */
+  /* margin-top: 50px; */
+  font-family: Pokemon;
+  background-image: url("https://cdn140.picsart.com/297375860189201.gif?to=min&r=640");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position:bottom;
+  }
 
-        font-family: 'Fira Sans', sans-serif;
-        background-image: url("https://cutewallpaper.org/21/pokemon-card-backgrounds/Backround-Pokemon-Card-Related-Keywords-and-Suggestions-.png");
+    /* .battle-detail{
+        margin: 300px;
     }
+    .battling{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: hidden;
+    } */
+
 
 /* border: solid 10px rgb(255, 217, 0);
         border-radius: 5px;

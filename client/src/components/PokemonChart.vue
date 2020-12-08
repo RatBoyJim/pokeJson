@@ -1,11 +1,11 @@
 <template>
 <div id="piechart-container">
     <h2>Pokemon Wins</h2>
-    <span class="wins">
+    <span class="wins" id="wins">
     <GChart type="PieChart" :data="chartDataWins" />
     </span>
     <h2>Pokemon Losses</h2>
-    <span class="losses">
+    <span class="losses" id="losses">
     <GChart type="PieChart" :data="chartDataLosses" />
     </span>
     </div>
@@ -41,5 +41,7 @@ export default {
 #piechart-container{
     display: flex;
     flex-direction: row;
+    width: 300px;
+    font-family: Pokemon;
 }
 </style>
