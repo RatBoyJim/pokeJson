@@ -40,6 +40,5 @@ export default {
 
 #piechart-container{
     display: flex;
-    flex-direction: row;
 }
 </style>

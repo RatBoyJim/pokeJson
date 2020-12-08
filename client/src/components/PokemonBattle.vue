@@ -78,7 +78,18 @@ export default {
   display: flex;
   flex-direction: column;
 }
+.result {
+  border: solid 10px rgb(255, 217, 0);
+        border-radius: 5px;
+        /* width: 100px; */
+        background-color: rgb(250, 210, 210);
+        padding: 10px;
+        /* margin-right: 300px; */
+        /* margin-top: 50px; */
 
+        font-family: 'Fira Sans', sans-serif;
+        background-image: url("https://cutewallpaper.org/21/pokemon-card-backgrounds/Backround-Pokemon-Card-Related-Keywords-and-Suggestions-.png");
+    }
 
 /* border: solid 10px rgb(255, 217, 0);
         border-radius: 5px;
