@@ -1,5 +1,12 @@
 <template>
-    <GChart type="PieChart" :data="chartData" />
+<div id="piechart-container">
+    <span class="wins">
+    <GChart type="PieChart" :data="chartDataWins" />
+    </span>
+    <span class="losses">
+    <GChart type="PieChart" :data="chartDataLosses" />
+    </span>
+    </div>
 </template>
 
 <script>
@@ -8,8 +15,15 @@ import { GChart } from 'vue-google-charts'
 export default {
     data () {
         return{
-            chartData:[
-                ['Pokemon', 'wins'],
+            chartDataWins:[
+                ['Pokemon', 'Wins'],
+                ['Pikachu', 5],
+                ['Charmander', 2],
+                ['Bulbasaur', 4],
+                ['Weedle', 6]
+            ],
+            chartDataLosses:[
+                ['Pokemon', 'Losses'],
                 ['Pikachu', 5],
                 ['Charmander', 2],
                 ['Bulbasaur', 4],
@@ -25,4 +39,12 @@ export default {
 
 <style>
 
+#piechart-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.wins{
+
+}
 </style>
