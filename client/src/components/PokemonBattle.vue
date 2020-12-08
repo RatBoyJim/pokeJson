@@ -4,7 +4,7 @@
       <button class="p1-stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemon">{{pokemonDetails1.moves[0].move.name}}</button>
       <p class="pokemon-detail">Remaining HP: {{pokemonDetails1.stats[0].base_stat}}</p>
       </div>
-      <div class="p2 container">
+      <div class="p2-container">
       <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon">{{pokemonDetails2.moves[0].move.name}}</button>
       <p class="pokemon-detail">Remaining HP: {{pokemonDetails2.stats[0].base_stat}}</p>
       </div>
@@ -61,6 +61,20 @@ export default {
   border-radius: 5px;
 }
 .p1-stuff {
+  display: flex;
+  flex-direction: column;
+}
+
+.p2-container > button{
+  width: 190px;
+  min-height: 50px;
+  margin-top: 10px;
+  text-justify: center;
+  text-align: center;
+  border: solid 10px rgb(255, 217, 0);
+  border-radius: 5px;
+}
+.p2-stuff {
   display: flex;
   flex-direction: column;
 }
