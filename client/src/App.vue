@@ -3,7 +3,7 @@
     <pokemon-title></pokemon-title>
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
-    <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"></battle-result>
+    <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"></battle-result>
 </div>
 </template>
 
@@ -25,7 +25,9 @@ export default {
             pokemonDetails1: null,
             pokemonDetails2: null,
             pokemonMoves1: [],
-            pokemonMoves2: []
+            pokemonMoves2: [],
+            pokemon1Defeated: false,
+            pokemon2Defeated: false
             
         };
     },
@@ -35,18 +37,22 @@ export default {
         eventBus.$on('pokemon-selected-1', (pokemon) => {
             this.selectedPokemon1 = {name: pokemon.name, url: pokemon.url};
             this.fetchPokemonDetails1();
-            this.fetchMovesP1();
         }),
         eventBus.$on('pokemon-selected-2', (pokemon) => {
             this.selectedPokemon2 = {name: pokemon.name, url: pokemon.url};
             this.fetchPokemonDetails2();
-            this.fetchMovesP2();
-        }),
-        eventBus.$on('pokemon-defeated-2', (defeat) => {
-            this.pokemonDetails2.isDefeated = true
         }),
         eventBus.$on('pokemon-defeated-1', (defeat) => {
-            this.pokemonDetails1.isDefeated = true
+            this.pokemon1Defeated = true
+        }),
+        eventBus.$on('pokemon-defeated-2', (defeat) => {
+            this.pokemon2Defeated = true            
+        }),
+        eventBus.$on('set-health-p1', (number) => {
+            this.pokemonDetails1.stats[0].base_stat -= number
+        })        
+        eventBus.$on('set-health-p2', (number) => {
+            this.pokemonDetails2.stats[0].base_stat -= number
         })
         
     },
@@ -63,23 +69,26 @@ export default {
     },
     fetchPokemonDetails1(){
     const pokemonName = this.selectedPokemon1.url
-    return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails1 = data)
+    return fetch(pokemonName).then(res => res.json()).then(data => 
+    {this.pokemonDetails1 = data
+    this.fetchMovesP1(data.moves[0].move.url)
+    })
+
     },
     fetchPokemonDetails2(){
     const pokemonName = this.selectedPokemon2.url
-    return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails2 = data)
+    return fetch(pokemonName).then(res => res.json()).then(data => 
+    {this.pokemonDetails2 = data
+    this.fetchMovesP2(data.moves[0].move.url)
+    })
 
     },
-    fetchMovesP1(){
-            const movesURL = "https://pokeapi.co/api/v2/move/13/"
-            console.log(movesURL);
+    fetchMovesP1(movesURL){
             return fetch(movesURL)
             .then(response => response.json())
             .then(data => this.pokemonMoves1 = data)
     },
-    fetchMovesP2(){
-            const movesURL = "https://pokeapi.co/api/v2/move/13/"
-            console.log(movesURL);
+    fetchMovesP2(movesURL){
             return fetch(movesURL)
             .then(response => response.json())
             .then(data => this.pokemonMoves2 = data)
