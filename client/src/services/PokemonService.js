@@ -10,4 +10,15 @@ export default {
         return fetch(baseURL)
         .then(res => res.json());
     },
+    updateWinsAndLosses(updatedPokemon){
+        console.log(updatedPokemon);
+        return fetch(baseURL + '/updatewins',{
+            method: 'PUT',
+            body: JSON.stringify(updatedPokemon),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(res => res.json());
+}
 }
