@@ -60,10 +60,12 @@ export default {
         }),
         eventBus.$on('set-health-p1', (number) => {
             this.pokemonDetails1.stats[0].base_stat -= number
-        })        
+        }),        
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
-        })
+        }),
+        eventBus.$on('Pokemon-1-win', (pokemonDetails1, pokemonDetails2));
+        
 
         this.fetchWinsAndLosses();
         
@@ -126,7 +128,10 @@ export default {
         
         })
         
-    }
+    },
+   
+
+    
 
 }
 }
