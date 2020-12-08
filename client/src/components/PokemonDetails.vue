@@ -1,6 +1,7 @@
 <template>
 <div class="details-container">
 <div class="pokemon-detail" v-if="pokemonDetails1">
+    <br>
     <img class="lrg-pokemon" :src="pokemonDetails1.sprites.front_default " />
     <h3>Name: {{ pokemonDetails1.name }}</h3>
     <h4>Height: {{ pokemonDetails1.height}}</h4>
@@ -26,7 +27,7 @@ export default {
     props:['character', 'selectedPokemon1', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2'],
     data() {
     return {
-      
+
     }
   },
     mounted(){
