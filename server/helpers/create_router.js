@@ -61,13 +61,14 @@ const createRouter = function (collection) {
     });
 
     //UPDATE
-    router.put('/:name', (req, res) =>{
-        const name = req.params.name;
+    router.put('/updatewins', (req, res) =>{
+        const name = req.body.name;
         const updatedData = req.body;
+        console.log(updatedData);
         collection
         .findOneAndUpdate(
             {name: name},
-            {$set: updatedData},
+            {$inc: {wins: 1}},
             {returnOriginal: false}
         )
         .then((result) => {

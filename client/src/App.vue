@@ -64,11 +64,20 @@ export default {
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
         }),
-        eventBus.$on('Pokemon-1-win', (pokemonDetails1, pokemonDetails2));
+        eventBus.$on('pokemon-1-win', (pokemonDetails1) => {
+            const updatedPokemon = {
+                name:pokemonDetails1.name,
+                
+            };
+            console.log(updatedPokemon);
+            PokemonService.updateWinsAndLosses(updatedPokemon)
+            .then(()=> this.fetchWinsAndLosses())
+
+        });
         
 
         this.fetchWinsAndLosses();
-        
+
     },
     computed:{
         
