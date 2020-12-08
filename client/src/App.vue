@@ -4,6 +4,7 @@
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"></battle-result>
+    <pokemon-chart :winsAndLosses='winsAndLosses'></pokemon-chart>
 </div>
 </template>
 
@@ -14,6 +15,7 @@ import PokemonList from './components/PokemonList.vue';
 import PokemonDetails from './components/PokemonDetails.vue';
 import PokemonBattle from './components/PokemonBattle.vue';
 import PokemonTitle from './components/PokemonTitle';
+import PokemonChart from './components/PokemonChart';
 
 export default {
     name: 'app',
@@ -27,8 +29,8 @@ export default {
             pokemonMoves1: [],
             pokemonMoves2: [],
             pokemon1Defeated: false,
-            pokemon2Defeated: false
-            
+            pokemon2Defeated: false,
+            winsAndLosses:[]
         };
     },
     mounted(){
@@ -54,13 +56,16 @@ export default {
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
         })
+
+        this.fetchWinsAndLosses();
         
     },
     components: {
         'pokemon-detail': PokemonDetails,
         'pokemon-list': PokemonList,
         'battle-result': PokemonBattle,
-        'pokemon-title':PokemonTitle
+        'pokemon-title':PokemonTitle,
+        'pokemon-chart': PokemonChart,
     },
     methods: {
         fetchPokemon(){
@@ -92,21 +97,25 @@ export default {
             return fetch(movesURL)
             .then(response => response.json())
             .then(data => this.pokemonMoves2 = data)
-    }
+    },
+    fetchWinsAndLosses(){
+        PokemonService.getWinsAndLosses()
+        .then(results => this.winsAndLosses = results)
     }
 
+}
 }
 </script>
 
 <style>
-/* @font-face {
-    font-family: Pokemon;
-    src: url(/fonts/Pokemon.ttf) format("ttf");
+@font-face {
+    font-family: 'Pokemon';
+    src: url(fonts/Pokemon.ttf);
 
 }
 
 .p{
     font-family: Pokemon;
-} */
+}
 
 </style>
