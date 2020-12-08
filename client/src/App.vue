@@ -5,7 +5,7 @@
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
     <!-- <battle-result :pokemon="pokemon"></battle-result> -->
-    <pokemon-chart></pokemon-chart>
+    <pokemon-chart :winsAndLosses='winsAndLosses'></pokemon-chart>
 </div>
 </template>
 
