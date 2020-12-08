@@ -70,7 +70,17 @@ export default {
                 
             };
             console.log(updatedPokemon);
-            PokemonService.updateWinsAndLosses(updatedPokemon)
+            PokemonService.updateWins(updatedPokemon)
+            .then(()=> this.fetchWinsAndLosses())
+
+        });
+        eventBus.$on('pokemon-1-win', (pokemonDetails2) => {
+            const updatedPokemon = {
+                name:pokemonDetails2.name,
+                
+            };
+            console.log(updatedPokemon);
+            PokemonService.updateLosses(updatedPokemon)
             .then(()=> this.fetchWinsAndLosses())
 
         });

@@ -28,6 +28,7 @@ export default {
         eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
         eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
         eventBus.$emit('pokemon-1-win', this.pokemonDetails1)
+        eventBus.$emit('pokemon-1-win', this.pokemonDetails2)
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
       }},
