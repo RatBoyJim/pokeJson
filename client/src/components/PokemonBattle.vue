@@ -1,62 +1,48 @@
 <template>
   <div class="battle">
-      <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackByFirstPokemon">{{pokemon1.moves[0].move.name}}</button>
-      <p>{{pokemon1.stats[0].base_stat}}</p>
-      <button :pokemon1="pokemon[0]" :pokemon2="pokemon[1]" v-on:click="attackBySecondPokemon">{{pokemon2.moves[0].move.name}}</button>
-      <p>{{pokemon1.stats[0].base_stat}}</p>
-      <p v-if="pokemon1.isDefeated">{{pokemon1.name}} is defeated</p>
-      <p v-if="pokemon2.isDefeated">{{pokemon2.name}} is defeated</p>
+      <button v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemon">{{pokemonDetails1.moves[0].move.name}}</button>
+      <p class="pokemon-detail">Remaining HP: {{pokemonDetails1.stats[0].base_stat}}</p>
+      <button v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon">{{pokemonDetails2.moves[0].move.name}}</button>
+      <p class="pokemon-detail">Remaining HP: {{pokemonDetails2.stats[0].base_stat}}</p>
+      <p v-if="pokemon1Defeated">{{pokemonDetails1.name}} is defeated</p>
+      <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
   </div>
 </template>
 
 <script>
 
-import Pokemon from './PokemonList'
+import { eventBus } from '@/main'
 
 export default {
-	name: 'battle-result',
-	data() {
-		return {
-            pokemon1Moves: [],
-            pokemon2Moves: []
-		}
-    },
-    mounted() {
-    this.fetchMovesP1();
-    this.fetchMovesP2();
-    },
+  name: 'battle-result',
+  props:['pokemonDetails1', 'pokemonDetails2', 'pokemonMoves1', 'pokemonMoves2', 'pokemon1Defeated', 'pokemon2Defeated'],
 	methods: {
-        fetchMovesP1() {
-            let movesURL = pokemon1.moves[0].move.url
-            fetch('movesURL')
-            .then(response => response.json())
-            .then(data => this.pokemon1Moves = data)
-    },
-        fetchMovesP2() {
-            let movesURL = pokemon2.moves[0].move.url
-            fetch('movesURL')
-            .then(response => response.json())
-            .then(data => this.pokemon2Moves = data)
-    },
-		attackByFirstPokemon(pokemon1, pokemon2){
-      return pokemon2.stats[0].base_stat = pokemon2.stats[0].base_stat - pokemon1Moves.moves[0].pp
-      if (pokemon2.stats[0].base_stat == 0) {
-        pokemon2.isDefeated = true;
-      }
-      },
-    attackBySecondPokemon(pokemon1, pokemon2){
-      return pokemon1.stats[0].base_stat = pokemon1.stats[0].base_stat - pokemon2Moves.moves[0].pp
-      if (pokemon1.stats[0].base_stat == 0) {
-        pokemon1.isDefeated = true;
-      }
-      },
+		attackByFirstPokemon(){
+        if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1.pp) {
+        eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
+        eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true);
+      }else{
+        eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
+      }},
+    attackBySecondPokemon(){
+      if (this.pokemonDetails1.stats[0].base_stat < this.pokemonMoves2.pp) {
+        eventBus.$emit('set-health-p1', this.pokemonDetails1.stats[0].base_stat)
+        eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true);
+      }else{
+        eventBus.$emit('set-health-p1', this.pokemonMoves2.pp)
       
-	}
-    
+      }}
+      
+  } 
 }
 
 </script>
 
 <style>
+
+.battle {
+        display: flex;
+        flex-direction: row;
+        }
 
 </style>
