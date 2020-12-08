@@ -3,7 +3,9 @@
     <pokemon-title></pokemon-title>
     <pokemon-list :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2'></pokemon-detail>
-    <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"></battle-result>
+    <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"
+     :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"
+     :pokemonMoves1Extra="pokemonMoves1Extra" :pokemonMoves2Extra="pokemonMoves2Extra" :pokemonPotions1="pokemonPotions1" :pokemonPotions2="pokemonPotions2"></battle-result>
     <pokemon-chart :chartDataWins='chartDataWins' :chartDataLosses='chartDataLosses'></pokemon-chart>
 </div>
 </template>
@@ -36,7 +38,11 @@ export default {
             ],
             
             pokemonMoves1: [],
+            pokemonMoves1Extra: [],
             pokemonMoves2: [],
+            pokemonMoves2Extra: [],
+            pokemonPotions1: 3,
+            pokemonPotions2: 3,
             pokemon1Defeated: false,
             pokemon2Defeated: false,
         };
@@ -60,9 +66,17 @@ export default {
         }),
         eventBus.$on('set-health-p1', (number) => {
             this.pokemonDetails1.stats[0].base_stat -= number
-        }),        
+        }),
+        eventBus.$on('increase-health-p1', (number) => {
+            this.pokemonDetails1.stats[0].base_stat += number
+            this.pokemonPotions1 -= 1
+        }),         
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
+        }),
+        eventBus.$on('increase-health-p2', (number) => {
+            this.pokemonDetails2.stats[0].base_stat += number
+            this.pokemonPotions2 -= 1
         }),
         eventBus.$on('pokemon-1-win', (pokemonDetails1) => {
             const updatedPokemon = {
@@ -99,6 +113,7 @@ export default {
     return fetch(pokemonName).then(res => res.json()).then(data => 
     {this.pokemonDetails1 = data
     this.fetchMovesP1(data.moves[0].move.url)
+    this.fetchMovesP1Extra(data.moves[1].move.url)
     })
 
     },
@@ -107,6 +122,7 @@ export default {
     return fetch(pokemonName).then(res => res.json()).then(data => 
     {this.pokemonDetails2 = data
     this.fetchMovesP2(data.moves[0].move.url)
+    this.fetchMovesP2Extra(data.moves[1].move.url)
     })
 
     },
@@ -115,10 +131,20 @@ export default {
             .then(response => response.json())
             .then(data => this.pokemonMoves1 = data)
     },
+    fetchMovesP1Extra(movesURL){
+            return fetch(movesURL)
+            .then(response => response.json())
+            .then(data => this.pokemonMoves1Extra = data)
+    },
     fetchMovesP2(movesURL){
             return fetch(movesURL)
             .then(response => response.json())
             .then(data => this.pokemonMoves2 = data)
+    },
+    fetchMovesP2Extra(movesURL){
+            return fetch(movesURL)
+            .then(response => response.json())
+            .then(data => this.pokemonMoves2Extra = data)
     },
     fetchWinsAndLosses(){
         PokemonService.getWinsAndLosses()
