@@ -25,8 +25,7 @@ export default {
             selectedPokemon1: null,
             selectedPokemon2: null,
             pokemonDetails1: null,
-            pokemonDetails2: null
-            
+            pokemonDetails2: null,
         };
     },
     mounted(){
@@ -60,8 +59,7 @@ export default {
     fetchPokemonDetails2(){
     const pokemonName = this.selectedPokemon2.url
     return fetch(pokemonName).then(res => res.json()).then(data => this.pokemonDetails2 = data)
-
-    }
+    },
     }
 
 }

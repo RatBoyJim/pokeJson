@@ -11,6 +11,16 @@
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
+
+    <!-- <span class="battle-detail">
+    <button @click="startBattle()" class="btn btn-primary">
+    <img class="battling" :src="'https://cdn140.picsart.com/297375860189201.gif?to=min&r=640'"/>
+    <span v-if="battle" class="px-1">
+        Battling</span> 
+    <span v-else ></span> 
+    </button>
+    </span> -->
+
   </div>
 </template>
 
@@ -24,6 +34,7 @@ export default {
         return {
             selectedPokemon1: {},
             selectedPokemon2: {},
+            // battle:false,
         };
     },
     components: {
@@ -35,16 +46,30 @@ export default {
       },
       fetchPokemonDetails2(){
         eventBus.$emit('pokemon-selected-2', this.selectedPokemon2)
-      }
-    }
+      },
+    //   startBattle(){
+    //     this.battle=!false
+    //       setTimeout(() => {
+    //           this.battle=!true
+    //             }, 2000)
+    // },
+  }
 }
 </script>
 
 <style>
-#pokemon2_label {
-  margin-left: 250px; 
-}
-
+    #pokemon2_label {
+      margin-left: 250px; 
+    }
+    /* .battle-detail{
+        margin: 300px;
+    }
+    .battling{
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border: hidden;
+    } */
 </style>
 
 <!--<section class="film-select-container">

@@ -27,7 +27,7 @@ export default {
     props:['character', 'selectedPokemon1', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2'],
     data() {
     return {
-      
+
     }
   },
     mounted(){
