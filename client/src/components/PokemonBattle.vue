@@ -18,7 +18,10 @@
       <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon">Use a potion ({{pokemonPotions2}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails2.stats[0].base_stat}}</i></b></p>
       </div>
-      
+      <div>
+        <img class="small-button" src="@/assets/pokeball.png" v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated">  
+        <h4 v-if="pokemon2Defeated || pokemon1Defeated">Battle Again!</h4>
+      </div>
   </div>
 </template>
 
@@ -35,7 +38,8 @@ export default {
         if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1.pp) {
         eventBus.$emit('set-health-p2', this.pokemonDetails2.stats[0].base_stat)
         eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
-        eventBus.$emit('pokemon-1-win', this.pokemonDetails1)
+        const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
+        eventBus.$emit('pokemon-1-win', payload); 
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
       }},
@@ -53,7 +57,9 @@ export default {
     attackBySecondPokemon(){
       if (this.pokemonDetails1.stats[0].base_stat < this.pokemonMoves2.pp) {
         eventBus.$emit('set-health-p1', this.pokemonDetails1.stats[0].base_stat)
-        eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true);
+        eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true)
+        const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
+        eventBus.$emit('pokemon-2-win', payload);
       }else{
         eventBus.$emit('set-health-p1', this.pokemonMoves2.pp)
       
@@ -68,10 +74,14 @@ export default {
       }},
     potionBySecondPokemon(){
       eventBus.$emit('increase-health-p2', 15)
+    },
+    handleClick(){
+        eventBus.$emit('battle-again')
     }
       
   } 
 }
+
 
 </script>
 
@@ -156,6 +166,9 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   background-position:bottom;
+  }
+  .small-button{
+    height: 50px;
   }
 
     /* .battle-detail{

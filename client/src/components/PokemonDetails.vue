@@ -36,6 +36,7 @@ export default {
     }
   },
     mounted(){
+        
         // eventBus.$on('pokemon-selected', pokemon => (this.selectedPokemon = pokemon));
         
     },

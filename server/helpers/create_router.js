@@ -60,7 +60,7 @@ const createRouter = function (collection) {
         });
     });
 
-    //UPDATE
+    //UPDATE WINS
     router.put('/updatewins', (req, res) =>{
         const name = req.body.name;
         const updatedData = req.body;
@@ -80,8 +80,29 @@ const createRouter = function (collection) {
             res.json({ status: 500, error: err});
         });
     });
-    return router;
 
+    //UPDATE LOSSES 
+    router.put('/updatelosses', (req, res) =>{
+        const name = req.body.name;
+        const updatedData = req.body;
+        console.log(updatedData);
+        collection
+        .findOneAndUpdate(
+            {name: name},
+            {$inc: {losses: 1}},
+            {returnOriginal: false}
+        )
+        .then((result) => {
+            res.json(result.value)
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500);
+            res.json({ status: 500, error: err});
+        });
+    });
+    return router;
 };
 
 module.exports = createRouter;
+

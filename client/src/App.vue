@@ -74,23 +74,43 @@ export default {
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
         }),
+        eventBus.$on('pokemon-1-win', (payload) => {
+            const updatedPokemon1 = {
+                name:payload.pokemonDetails1.name 
+            };
+            PokemonService.updateWins(updatedPokemon1)
+            const updatedPokemon2 = {
+                name:payload.pokemonDetails2.name,
+            };
+            PokemonService.updateLosses(updatedPokemon2)
+            .then(()=> this.fetchWinsAndLosses())
+        });
+
         eventBus.$on('increase-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat += number
             this.pokemonPotions2 -= 1
         }),
-        eventBus.$on('pokemon-1-win', (pokemonDetails1) => {
-            const updatedPokemon = {
-                name:pokemonDetails1.name,
-                
+           
+        eventBus.$on('pokemon-2-win', (payload) => {
+            const updatedPokemon1 = {
+                name:payload.pokemonDetails1.name,  
             };
-            console.log(updatedPokemon);
-            PokemonService.updateWinsAndLosses(updatedPokemon)
+            PokemonService.updateLosses(updatedPokemon1)
+            const updatedPokemon2 = {
+                name:payload.pokemonDetails2.name,
+            };
+            PokemonService.updateWins(updatedPokemon2)
             .then(()=> this.fetchWinsAndLosses())
-
         });
-        
-
         this.fetchWinsAndLosses();
+        eventBus.$on('battle-again', () => {
+          this.selectedPokemon1 = null,
+          this.selectedPokemon2 = null,
+          this.pokemonDetails1 = null,
+          this.pokemonDetails2 = null,
+          this.pokemon1Defeated = false,
+          this.pokemon2Defeated = false
+      });
 
     },
     computed:{
