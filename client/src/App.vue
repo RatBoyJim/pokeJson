@@ -6,7 +6,7 @@
     <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"
      :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"
      :pokemonMoves1Extra="pokemonMoves1Extra" :pokemonMoves2Extra="pokemonMoves2Extra" :pokemonPotions1="pokemonPotions1" :pokemonPotions2="pokemonPotions2"></battle-result>
-    <pokemon-chart :chartDataWins='chartDataWins' :chartDataLosses='chartDataLosses'></pokemon-chart>
+    <pokemon-chart :chartDataWins='chartDataWins' :chartDataLosses='chartDataLosses' :chartDataPlayed='chartDataPlayed'></pokemon-chart>
 </div>
 </template>
 
@@ -35,6 +35,10 @@ export default {
             ],
             chartDataLosses:[
                 ['Pokemon', 'Losses'],
+            ],
+            chartDataPlayed:[
+                ['Pokemon', 'Battles'],
+                
             ],
             
             pokemonMoves1: [],
@@ -93,7 +97,8 @@ export default {
            
         eventBus.$on('pokemon-2-win', (payload) => {
             const updatedPokemon1 = {
-                name:payload.pokemonDetails1.name,  
+                name:payload.pokemonDetails1.name, 
+                 
             };
             PokemonService.updateLosses(updatedPokemon1)
             const updatedPokemon2 = {
@@ -180,6 +185,11 @@ export default {
                 return [result.name, result.losses]
             })
             this.chartDataLosses = [['pokemon', 'losses'], ...newLosses]
+            
+            let newPlayed = results.map(result => {
+                return [result.name, result.played]
+            })
+            this.chartDataPlayed = [['pokemon', 'played'], ...newPlayed]
         
         })
         

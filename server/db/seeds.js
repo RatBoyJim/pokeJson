@@ -4,102 +4,122 @@ db.dropDatabase();
 db.pokemon.insertMany([
     {
         name: "bulbasaur",
-        wins: 2,
-        losses: 5
+        wins: 0,
+        losses: 0,
+        played: 0
     },
     {
         name: "ivysaur",
-        wins: 1,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "venusaur",
-        wins: 4,
-        losses: 1
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "charmander",
-        wins: 4,
-        losses: 1
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "charmeleon",
-        wins: 5,
-        losses: 2
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "charizard",
-        wins: 3,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "squirtle",
-        wins: 2,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "wartortle",
-        wins: 6,
-        losses: 4
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "blastoise",
-        wins: 4,
-        losses: 5
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "caterpie",
-        wins: 1,
-        losses: 2
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "metapod",
-        wins: 1,
-        losses: 1
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "butterfree",
-        wins: 2,
-        losses: 5
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "weedle",
-        wins: 5,
-        losses: 2
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "kakuna",
-        wins: 3,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "beedrill",
-        wins: 4,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "pidgey",
-        wins: 1,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "pidgeotto",
-        wins: 6,
-        losses: 2
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "pidgeot",
-        wins: 4,
-        losses: 3
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "rattata",
-        wins: 5,
-        losses: 0
+        wins: 0,
+        losses: 0,
+        played:0 
     },
     {
         name: "raticate",
         wins: 0,
-        losses: 3
+        losses: 0,
+        played:0 
     }
 ])

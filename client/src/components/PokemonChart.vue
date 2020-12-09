@@ -1,5 +1,9 @@
 <template>
 <div id="piechart-container">
+    <h2>Battles Played</h2>
+    <span class="wins" id="wins">
+    <GChart type="PieChart" :data="chartDataPlayed" />
+    </span>
     <h2>Pokemon Wins</h2>
     <span class="wins" id="wins">
     <GChart type="PieChart" :data="chartDataWins" />
@@ -16,7 +20,7 @@ import { GChart } from 'vue-google-charts'
 
 export default {
     name: "pokemon-chart",
-    props: ["chartDataWins", "chartDataLosses"],
+    props: ["chartDataWins", "chartDataLosses", "chartDataPlayed"],
     data () {
         return{
             

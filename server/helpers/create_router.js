@@ -68,7 +68,7 @@ const createRouter = function (collection) {
         collection
         .findOneAndUpdate(
             {name: name},
-            {$inc: {wins: 1}},
+            {$inc: {wins: 1, played: 1}},
             {returnOriginal: false}
         )
         .then((result) => {
@@ -89,7 +89,7 @@ const createRouter = function (collection) {
         collection
         .findOneAndUpdate(
             {name: name},
-            {$inc: {losses: 1}},
+            {$inc: {losses: 1, played: 1}},
             {returnOriginal: false}
         )
         .then((result) => {
