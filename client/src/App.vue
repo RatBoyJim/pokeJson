@@ -114,7 +114,9 @@ export default {
           this.pokemonDetails1 = null,
           this.pokemonDetails2 = null,
           this.pokemon1Defeated = false,
-          this.pokemon2Defeated = false
+          this.pokemon2Defeated = false,
+          this.pokemonPotions1 = 3,
+          this.pokemonPotions2 = 3
       });
 
     },
