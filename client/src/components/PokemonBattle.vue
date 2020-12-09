@@ -18,10 +18,6 @@
       <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon">Use a potion ({{pokemonPotions2}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails2.stats[0].base_stat}}</i></b></p>
       </div>
-      <div>
-        <img class="small-button" src="@/assets/pokeball.png" v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated">  
-        <h4 v-if="pokemon2Defeated || pokemon1Defeated">Battle Again!</h4>
-      </div>
   </div>
 </template>
 
@@ -74,10 +70,8 @@ export default {
       }},
     potionBySecondPokemon(){
       eventBus.$emit('increase-health-p2', 15)
-    },
-    handleClick(){
-        eventBus.$emit('battle-again')
     }
+    
       
   } 
 }
@@ -159,17 +153,13 @@ export default {
   background-color: rgb(#888);
   padding: 10px;
   justify-content: center;
-  /* margin-left: 300px; */
-  /* margin-top: 50px; */
   font-family: Pokemon;
   background-image: url("https://cdn140.picsart.com/297375860189201.gif?to=min&r=640");
   background-repeat: no-repeat;
   background-size: contain;
   background-position:bottom;
   }
-  .small-button{
-    height: 50px;
-  }
+  
 
     /* .battle-detail{
         margin: 300px;
