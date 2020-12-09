@@ -77,11 +77,3 @@ export default {
     border: hidden;
     } */
 </style>
-
-<!--<section class="film-select-container">
-   <label for="film-select">Select a Film:</label>
-    <select id="film-select" v-model="selectedFilm">
-      <option disabled value="">Select a Film</option>
-      <option v-for="(film, index) in films" :key="index" :value="film">{{film.title}}</option>
-    </select>
-  </section>
