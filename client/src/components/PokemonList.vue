@@ -1,7 +1,8 @@
 <template>
   <div id="pokemonsList">
-
-    <label for="pokemon_select">Select Pokemon 1:</label>
+    <br>
+    <br>
+    <label id="pokemon1_label" for="pokemon_select">Select Pokemon 1:</label>
     <select id="pokemon_select1" v-model="selectedPokemon1" v-on:change="fetchPokemonDetails1">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
@@ -58,8 +59,13 @@ export default {
 </script>
 
 <style>
-    #pokemon2_label {
+    #pokemon1_label{
+      font-family: Pokemon;
+    }
+
+    #pokemon2_label{
       margin-left: 250px; 
+      font-family: Pokemon;
     }
     /* .battle-detail{
         margin: 300px;
