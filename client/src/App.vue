@@ -76,7 +76,7 @@ export default {
         }),
         eventBus.$on('pokemon-1-win', (payload) => {
             const updatedPokemon1 = {
-                name:payload.pokemonDetails1.name,  
+                name:payload.pokemonDetails1.name 
             };
             PokemonService.updateWins(updatedPokemon1)
             const updatedPokemon2 = {

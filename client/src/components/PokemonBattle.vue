@@ -17,7 +17,8 @@
       <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
       </div>
       <div>
-        <button v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated" >Battle Again</button>
+        <img class="small-button" src="@/assets/pokeball.png" v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated">  
+        <h4 v-if="pokemon2Defeated || pokemon1Defeated">Battle Again!</h4>
       </div>
   </div>
 </template>
@@ -137,6 +138,9 @@ export default {
   background-repeat: no-repeat;
   background-size: contain;
   background-position:bottom;
+  }
+  .small-button{
+    height: 50px;
   }
 
     /* .battle-detail{
