@@ -16,6 +16,9 @@
       <p v-if="pokemon1Defeated">{{pokemonDetails1.name}} is defeated</p>
       <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
       </div>
+      <div>
+        <button v-if="pokemon2Defeated || pokemon1Defeated" >test</button>
+      </div>
   </div>
 </template>
 
