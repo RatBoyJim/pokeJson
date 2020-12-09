@@ -29,8 +29,6 @@ export default {
         eventBus.$emit('pokemon-defeated-2', this.pokemonDetails2.isDefeated = true)
         const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
         eventBus.$emit('pokemon-1-win', payload); 
-        // eventBus.$emit('pokemon-1-win', this.pokemonDetails1)
-        // eventBus.$emit('pokemon-1-win', this.pokemonDetails2);
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
       }},
@@ -39,9 +37,7 @@ export default {
         eventBus.$emit('set-health-p1', this.pokemonDetails1.stats[0].base_stat)
         eventBus.$emit('pokemon-defeated-1', this.pokemonDetails1.isDefeated = true)
         const payload = {'pokemonDetails1':this.pokemonDetails1, 'pokemonDetails2':this.pokemonDetails2}
-        eventBus.$emit('pokemon-2-win', payload); 
-        // eventBus.$emit('pokemon-2-win', this.pokemonDetails2)
-        // eventBus.$emit('pokemon-2-win', this.pokemonDetails1);
+        eventBus.$emit('pokemon-2-win', payload);
       }else{
         eventBus.$emit('set-health-p1', this.pokemonMoves2.pp)
       

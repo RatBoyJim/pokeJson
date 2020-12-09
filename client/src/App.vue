@@ -75,17 +75,6 @@ export default {
             PokemonService.updateLosses(updatedPokemon2)
             .then(()=> this.fetchWinsAndLosses())
         });
-        // eventBus.$on('pokemon-1-win', (pokemonDetails2) => {
-        //     const updatedPokemon = {
-        //         name:pokemonDetails2.name,
-                
-        //     };
-        //     console.log(updatedPokemon);
-        //     PokemonService.updateLosses(updatedPokemon)
-        //     .then(()=> this.fetchWinsAndLosses())
-
-        // });
-
         eventBus.$on('pokemon-2-win', (payload) => {
             const updatedPokemon1 = {
                 name:payload.pokemonDetails1.name,  
@@ -97,28 +86,6 @@ export default {
             PokemonService.updateWins(updatedPokemon2)
             .then(()=> this.fetchWinsAndLosses())
         });
-        // eventBus.$on('pokemon-2-win', (pokemonDetails2) => {
-        //     const updatedPokemon = {
-        //         name:pokemonDetails2.name,
-                
-        //     };
-        //     console.log(updatedPokemon);
-        //     PokemonService.updateWins(updatedPokemon)
-        //     .then(()=> this.fetchWinsAndLosses())
-
-        // });
-        // eventBus.$on('pokemon-2-win', (pokemonDetails1) => {
-        //     const updatedPokemon = {
-        //         name:pokemonDetails1.name,
-                
-        //     };
-        //     console.log(updatedPokemon);
-        //     PokemonService.updateLosses(updatedPokemon)
-        //     .then(()=> this.fetchWinsAndLosses())
-
-        // });
-        
-
         this.fetchWinsAndLosses();
 
     },
