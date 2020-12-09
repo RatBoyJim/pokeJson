@@ -69,20 +69,23 @@ export default {
     .spacer-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
 }
 
-.spacer-contents {
-  border: solid 10px rgb(255, 217, 0);
-  border-radius: 5px;
+.spacer-details {
+  display: flex;
   width: 100px;
   height: 140px;
   background-color: rgb(#888);
-  padding: 10px;
+  /* padding: 10px; */
   justify-content: center;
   align-items: center;
   justify-items: center;
+  align-content: center;
   font-family: Pokemon;
-  background-image: url("https://cdn140.picsart.com/297375860189201.gif?to=min&r=640");
   background-repeat: no-repeat;
   background-size: contain;
   background-position:bottom;
