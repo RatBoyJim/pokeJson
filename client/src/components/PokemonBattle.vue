@@ -17,7 +17,7 @@
       <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
       </div>
       <div>
-        <button v-if="pokemon2Defeated || pokemon1Defeated" >test</button>
+        <button v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated" >Battle Again</button>
       </div>
   </div>
 </template>
@@ -71,10 +71,14 @@ export default {
       }},
     potionBySecondPokemon(){
       eventBus.$emit('increase-health-p2', 15)
+    },
+    handleClick(){
+        eventBus.$emit('battle-again')
     }
       
   } 
 }
+
 
 </script>
 

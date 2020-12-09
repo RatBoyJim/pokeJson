@@ -41,6 +41,13 @@ export default {
     components: {
     //    'pokemon': Pokemon
     },
+
+    mounted(){
+      eventBus.$on('battle-again', () => {
+          this.selectedPokemon1 = {},
+          this.selectedPokemon2 = {}
+      })
+    },
     methods:{
       fetchPokemonDetails1(){
         eventBus.$emit('pokemon-selected-1', this.selectedPokemon1)

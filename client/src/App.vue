@@ -103,6 +103,14 @@ export default {
             .then(()=> this.fetchWinsAndLosses())
         });
         this.fetchWinsAndLosses();
+        eventBus.$on('battle-again', () => {
+          this.selectedPokemon1 = null,
+          this.selectedPokemon2 = null,
+          this.pokemonDetails1 = null,
+          this.pokemonDetails2 = null,
+          this.pokemon1Defeated = false,
+          this.pokemon2Defeated = false
+      });
 
     },
     computed:{
