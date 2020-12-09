@@ -84,5 +84,21 @@ export default {
     #pokemon2_label{
       font-family: Pokemon;
     }
+
+  select {
+    padding:10px;
+    margin: 10px;
+    border-radius:10px;
+    border: 0;
+    box-shadow: 5px 5px 5px 5px rgba(68, 2, 107, 0.06);
+    border-color: blueviolet;
+    font-family: "Fira Sans";
+}
+
+  select:hover {
+    box-shadow: 15px 15px 15px 15px rgba(68, 2, 107, 0.06);
+    border-color: black;
+}
+
     
 </style>
