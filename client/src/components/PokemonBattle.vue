@@ -1,21 +1,22 @@
 <template>
   <div class="battle">
       <div class="p1-container">
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemon">{{pokemonDetails1.moves[0].move.name}}</button>
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemonExtra">{{pokemonDetails1.moves[1].move.name}}</button>
-      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated" :pokemonPotions1="pokemonPotions1" v-on:click="potionByFirstPokemon">Use a potion ({{pokemonPotions1}})</button>
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails1.moves[0].move.name}}</button>
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails1.moves[1].move.name}}</button>
+      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated" :pokemonPotions1="pokemonPotions1" v-on:click="potionByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions1}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails1.stats[0].base_stat}}</i></b></p>
       </div>
       <section class="result-container">
       <div class="result-contents" v-if="pokemon1Defeated || pokemon2Defeated">
         <p v-if="pokemon1Defeated">{{pokemonDetails1.name}} is defeated</p>
         <p v-if="pokemon2Defeated">{{pokemonDetails2.name}} is defeated</p>
+        <audio v-if="pokemon1Defeated || pokemon2Defeated" autoplay src="http://soundbible.com/grab.php?id=2103&type=mp3"></audio>  
       </div>
       </section>
       <div class="p2-container">
-      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon">{{pokemonDetails2.moves[0].move.name}}</button>
-      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemonExtra">{{pokemonDetails2.moves[1].move.name}}</button>
-      <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon">Use a potion ({{pokemonPotions2}})</button>
+      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[0].move.name}}</button>
+      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[1].move.name}}</button>
+      <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions2}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails2.stats[0].base_stat}}</i></b></p>
       </div>
   </div>
@@ -70,6 +71,12 @@ export default {
       }},
     potionBySecondPokemon(){
       eventBus.$emit('increase-health-p2', 15)
+    },
+    playSound (sound) {
+      if(sound) {
+        var audio = new Audio(sound);
+        audio.play();
+      }
     }
     
       
