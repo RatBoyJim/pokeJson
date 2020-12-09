@@ -10,7 +10,8 @@
 </div>
 <div class="spacer-container">
     <div class="spacer-details">
-
+        <img class="small-button" src="@/assets/pokeball.png" v-on:click="handleClick" v-if="pokemon2Defeated || pokemon1Defeated">  
+        <h4 v-if="pokemon2Defeated || pokemon1Defeated">Battle Again!</h4>
     </div>
 </div>
 <div class="pokemon-detail" v-if="pokemonDetails2">
@@ -29,19 +30,16 @@ import { eventBus } from '@/main'
 
 export default {
     name: 'pokemon-detail',
-    props:['character', 'selectedPokemon1', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2'],
+    props:['character', 'selectedPokemon1', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2', 'pokemon1Defeated', 'pokemon2Defeated'],
     data() {
     return {
 
     }
   },
-    mounted(){
-        
-        // eventBus.$on('pokemon-selected', pokemon => (this.selectedPokemon = pokemon));
-        
-    },
     methods: {
-
+        handleClick(){
+        eventBus.$emit('battle-again')
+    }
 }
 }
 </script>
@@ -71,22 +69,30 @@ export default {
     .spacer-container {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
 }
 
-.spacer-contents {
-  border: solid 10px rgb(255, 217, 0);
-  border-radius: 5px;
+.spacer-details {
+  display: flex;
   width: 100px;
   height: 140px;
   background-color: rgb(#888);
-  padding: 10px;
+  /* padding: 10px; */
   justify-content: center;
-  /* margin-left: 300px; */
-  /* margin-top: 50px; */
+  align-items: center;
+  justify-items: center;
+  align-content: center;
   font-family: Pokemon;
-  background-image: url("https://cdn140.picsart.com/297375860189201.gif?to=min&r=640");
   background-repeat: no-repeat;
   background-size: contain;
   background-position:bottom;
+  height: 50px;
+  }
+
+.small-button{
+    height: 50px;
   }
 </style>

@@ -13,6 +13,13 @@ export default {
 </script>
 
 <style scoped>
+
+.title-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 img{
   border: 5px;
   border-color: rgb(72, 105, 197);
