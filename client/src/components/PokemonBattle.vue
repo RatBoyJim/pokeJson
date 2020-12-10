@@ -1,9 +1,15 @@
 <template>
   <div class="battle">
       <div class="p1-container">
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails1.moves[0].move.name}}</button>
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackByFirstPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails1.moves[1].move.name}}</button>
-      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated" :pokemonPotions1="pokemonPotions1" v-on:click="potionByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions1}})</button>
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
+      v-on:click="attackByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">
+      {{pokemonDetails1.moves[0].move.name}}</button>
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
+      v-on:click="attackByFirstPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">
+      {{pokemonDetails1.moves[1].move.name}}</button>
+      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated" 
+      :pokemonPotions1="pokemonPotions1" v-on:click="potionByFirstPokemon" 
+      @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions1}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails1.stats[0].base_stat}}</i></b></p>
       </div>
       <section class="result-container">
@@ -77,7 +83,7 @@ export default {
     },
     playSound (sound) {
       if(sound) {
-        var audio = new Audio(sound);
+        let audio = new Audio(sound);
         audio.play();
       }
     }
@@ -170,16 +176,6 @@ export default {
   background-position:bottom;
   }
   
-
-    /* .battle-detail{
-        margin: 300px;
-    }
-    .battling{
-    width: 100px;
-    height: 100px;
-    background-color: white;
-    border: hidden;
-    } */
 
 
 </style>
