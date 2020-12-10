@@ -1,13 +1,13 @@
 <template>
   <div id="pokemonsList">
-    <div class="pokemon1_container" >
+    <div class="pokemon1_container">
     <label id="pokemon1_label" for="pokemon_select">Select Pokemon 1:</label>
     <select id="pokemon_select1" v-model="selectedPokemon1" v-on:change="fetchPokemonDetails1">
       <option disabled value="">Select a Pokemon</option>
       <option v-for="(character, index) in pokemon" :pokemon="pokemon" :value="character" :key="index">{{pokemon[index].name}}</option>
     </select>
     </div>
-    <div class="pokemon2_container" >
+    <div class="pokemon2_container">
     <label id="pokemon2_label" for="pokemon_select">Select Pokemon 2:</label>
     <select id="pokemon_select2" v-model="selectedPokemon2" v-on:change="fetchPokemonDetails2">
       <option disabled value="">Select a Pokemon</option>
