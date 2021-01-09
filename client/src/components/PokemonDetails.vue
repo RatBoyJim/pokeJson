@@ -76,7 +76,7 @@ export default {
 
 .spacer-details {
   display: flex;
-  width: 100px;
+  width: 0px;
   height: 140px;
   background-color: rgb(#888);
   /* padding: 10px; */
