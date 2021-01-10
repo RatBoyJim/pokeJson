@@ -1,5 +1,5 @@
 <template>
-<div class="details-container" v-if="p1PokemonListDetails">
+<div class="details-container" v-if="p1PokemonListDetails || p2PokemonListDetails">
 <div class="pokemon-detail" v-for="(pokemon, index) in p1PokemonListDetails" :key="index" :p1PokemonListDetails="p1PokemonListDetails" v-on:click="selectPokemon1(pokemon)" >
     <img class="lrg-pokemon" :src="pokemon.sprites.front_default"/>
     <h3>Name: {{ pokemon.name }}</h3>
@@ -13,12 +13,12 @@
         <h4 v-if="pokemon2Defeated || pokemon1Defeated">Battle Again!</h4>
     </div>
 </div>
-<div class="pokemon-detail" v-if="pokemonDetails2">
-<img class="lrg-pokemon" :src="pokemonDetails2.sprites.front_default " />
-    <h3>Name: {{ pokemonDetails2.name }}</h3>
-    <h4>Height: {{ pokemonDetails2.height}}</h4>
-    <h4>{{pokemonDetails2.moves[0].move.name}}</h4>
-    <h4>{{pokemonDetails2.moves[1].move.name}}</h4>  
+<div class="pokemon-detail" v-for="(pokemon, index) in p2PokemonListDetails" :key="index" :p2PokemonListDetails="p2PokemonListDetails" v-on:click="selectPokemon2(pokemon)" >
+<img class="lrg-pokemon" :src="pokemon.sprites.front_default " />
+    <h3>Name: {{ pokemon.name }}</h3>
+    <h4>Height: {{ pokemon.height}}</h4>
+    <h4>{{pokemon.moves[0].move.name}}</h4>
+    <h4>{{pokemon.moves[1].move.name}}</h4>
 </div>
 </div>
 </template>
@@ -29,7 +29,7 @@ import { eventBus } from '@/main'
 
 export default {
     name: 'pokemon-detail',
-    props:['character', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2', 'pokemon1Defeated', 'pokemon2Defeated', 'p1PokemonListDetails'],
+    props:['character', 'pokemonDetails1', 'pokemonDetails2', 'pokemon1Defeated', 'pokemon2Defeated', 'p1PokemonListDetails', 'p2PokemonListDetails'],
     data() {
     return {
     
@@ -40,8 +40,11 @@ export default {
         eventBus.$emit('battle-again')
     },
     selectPokemon1(pokemon){
-        eventBus.$emit('pokemon-selected-1-from-list', pokemon)
-      }
+        eventBus.$emit('pokemon-selected-from-list-1', pokemon)
+    },
+    selectPokemon2(pokemon){
+        eventBus.$emit('pokemon-selected-from-list-2', pokemon)
+    }
 }
 }
 </script>
