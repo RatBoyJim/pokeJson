@@ -2,7 +2,7 @@
 <div id="app">
     <pokemon-title></pokemon-title>
     <pokemon-list v-if="!selectedPokemon1 || !selectedPokemon2" :pokemon='pokemon'></pokemon-list>
-    <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2' :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"></pokemon-detail>
+    <pokemon-detail  :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2' :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated" :p1PokemonListDetails="p1PokemonListDetails"></pokemon-detail>
     <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"
      :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"
      :pokemonMoves1Extra="pokemonMoves1Extra" :pokemonMoves2Extra="pokemonMoves2Extra" :pokemonPotions1="pokemonPotions1" :pokemonPotions2="pokemonPotions2"
@@ -27,10 +27,12 @@ export default {
             pokemon: [],
             selectedPokemon1: null,
             selectedPokemon2: null,
+            p1PokemonList: [],
             pokemonDetails1: null,
+            p1PokemonListDetails: [],
             pokemonDetails2: null,
-            p1turn: true,
-            p2turn: false,
+            p1turn: false,
+            p2turn: true,
             winsAndLosses:[],
             chartDataWins:[
                 ['Pokemon', 'Wins'],
@@ -60,6 +62,18 @@ export default {
         eventBus.$on('pokemon-selected-1', (pokemon) => {
             this.selectedPokemon1 = {name: pokemon.name, url: pokemon.url};
             this.fetchPokemonDetails1();
+        }),
+        eventBus.$on('p1-pokemon-list', (pokemon) => {
+            this.p1PokemonList = pokemon;
+            this.p1PokemonList.forEach(item => {
+                this.fetchPokemonDetailsForList1(item);
+            });
+        }),
+        eventBus.$on('pokemon-selected-1-from-list', (pokemon) => {
+            this.selectedPokemon1 = pokemon;
+            this.pokemonDetails1 = pokemon;
+            this.fetchMovesP1(this.selectedPokemon1.moves[0].move.url)
+            this.fetchMovesP1Extra(this.selectedPokemon1.moves[1].move.url)
         }),
         eventBus.$on('pokemon-selected-2', (pokemon) => {
             this.selectedPokemon2 = {name: pokemon.name, url: pokemon.url};
@@ -126,6 +140,8 @@ export default {
         eventBus.$on('battle-again', () => {
           this.selectedPokemon1 = null,
           this.selectedPokemon2 = null,
+          this.p1PokemonList = [],
+          this.p1PokemonListDetails = [],
           this.pokemonDetails1 = null,
           this.pokemonDetails2 = null,
           this.pokemon1Defeated = false,
@@ -158,6 +174,13 @@ export default {
     this.fetchMovesP1Extra(data.moves[1].move.url)
     })
 
+    },
+    fetchPokemonDetailsForList1(item){
+    const pokemonName = item.url
+    return fetch(pokemonName).then(res => res.json()).then(data => 
+    {this.p1PokemonListDetails.push(data)
+    })
+    
     },
     fetchPokemonDetails2(){
     const pokemonName = this.selectedPokemon2.url

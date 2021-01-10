@@ -1,11 +1,11 @@
 <template>
-<div class="details-container">
-<div class="pokemon-detail" v-if="pokemonDetails1">
-    <img class="lrg-pokemon" :src="pokemonDetails1.sprites.front_default " />
-    <h3>Name: {{ pokemonDetails1.name }}</h3>
-    <h4>Height: {{ pokemonDetails1.height}}</h4>
-    <h4>{{pokemonDetails1.moves[0].move.name}}</h4>
-    <h4>{{pokemonDetails1.moves[1].move.name}}</h4>    
+<div class="details-container" v-if="p1PokemonListDetails">
+<div class="pokemon-detail" v-for="(pokemon, index) in p1PokemonListDetails" :key="index" :p1PokemonListDetails="p1PokemonListDetails" v-on:click="selectPokemon1(pokemon)" >
+    <img class="lrg-pokemon" :src="pokemon.sprites.front_default"/>
+    <h3>Name: {{ pokemon.name }}</h3>
+    <h4>Height: {{ pokemon.height}}</h4>
+    <h4>{{pokemon.moves[0].move.name}}</h4>
+    <h4>{{pokemon.moves[1].move.name}}</h4>    
 </div>
 <div class="spacer-container">
     <div class="spacer-details">
@@ -29,16 +29,19 @@ import { eventBus } from '@/main'
 
 export default {
     name: 'pokemon-detail',
-    props:['character', 'selectedPokemon1', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2', 'pokemon1Defeated', 'pokemon2Defeated'],
+    props:['character', 'pokemonDetails1', 'selectedPokemon2', 'pokemonDetails2', 'pokemon1Defeated', 'pokemon2Defeated', 'p1PokemonListDetails'],
     data() {
     return {
-
+    
     }
   },
     methods: {
         handleClick(){
         eventBus.$emit('battle-again')
-    }
+    },
+    selectPokemon1(pokemon){
+        eventBus.$emit('pokemon-selected-1-from-list', pokemon)
+      }
 }
 }
 </script>
