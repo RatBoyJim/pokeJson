@@ -1,11 +1,12 @@
 <template>
 <div id="app">
     <pokemon-title></pokemon-title>
-    <pokemon-list :pokemon='pokemon'></pokemon-list>
+    <pokemon-list v-if="!selectedPokemon1 || !selectedPokemon2" :pokemon='pokemon'></pokemon-list>
     <pokemon-detail :selectedPokemon1='selectedPokemon1' :selectedPokemon2='selectedPokemon2' :pokemonDetails1='pokemonDetails1' :pokemonDetails2='pokemonDetails2' :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"></pokemon-detail>
     <battle-result  v-if="pokemonDetails1 && pokemonDetails2" :pokemon1Defeated="pokemon1Defeated" :pokemon2Defeated="pokemon2Defeated"
      :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" :pokemonMoves1="pokemonMoves1" :pokemonMoves2="pokemonMoves2"
-     :pokemonMoves1Extra="pokemonMoves1Extra" :pokemonMoves2Extra="pokemonMoves2Extra" :pokemonPotions1="pokemonPotions1" :pokemonPotions2="pokemonPotions2"></battle-result>
+     :pokemonMoves1Extra="pokemonMoves1Extra" :pokemonMoves2Extra="pokemonMoves2Extra" :pokemonPotions1="pokemonPotions1" :pokemonPotions2="pokemonPotions2"
+     :p1turn="p1turn" :p2turn="p2turn"></battle-result>
     <pokemon-chart :chartDataWins='chartDataWins' :chartDataLosses='chartDataLosses' :chartDataPlayed='chartDataPlayed'></pokemon-chart>
 </div>
 </template>
@@ -28,6 +29,8 @@ export default {
             selectedPokemon2: null,
             pokemonDetails1: null,
             pokemonDetails2: null,
+            p1turn: true,
+            p2turn: false,
             winsAndLosses:[],
             chartDataWins:[
                 ['Pokemon', 'Wins'],
@@ -77,6 +80,18 @@ export default {
         }),         
         eventBus.$on('set-health-p2', (number) => {
             this.pokemonDetails2.stats[0].base_stat -= number
+        }),
+        eventBus.$on('p1played', (played) => {
+            this.p1turn = false
+        }),
+        eventBus.$on('p2next', (next) => {
+            this.p2turn = true
+        }),
+        eventBus.$on('p2played', (played) => {
+            this.p2turn = false
+        }),
+        eventBus.$on('p1next', (next) => {
+            this.p1turn = true
         }),
         eventBus.$on('pokemon-1-win', (payload) => {
             const updatedPokemon1 = {

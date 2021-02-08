@@ -1,4 +1,4 @@
-const apiURL = 'https://pokeapi.co/api/v2/pokemon'
+const apiURL = 'https://pokeapi.co/api/v2/pokemon?limit=100'
 const baseURL = 'http://localhost:3000/api/pokemon'
 
 export default {

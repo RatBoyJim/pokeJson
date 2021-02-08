@@ -1,13 +1,13 @@
 <template>
   <div class="battle">
       <div class="p1-container">
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated && p1turn" :p1turn="p1turn" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
       v-on:click="attackByFirstPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">
       {{pokemonDetails1.moves[0].move.name}}</button>
-      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
+      <button class="p1stuff" v-if="!pokemon1Defeated && !pokemon2Defeated && p1turn" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" 
       v-on:click="attackByFirstPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">
       {{pokemonDetails1.moves[1].move.name}}</button>
-      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated" 
+      <button class="p1stuff" v-if="pokemonPotions1 && !pokemon1Defeated && !pokemon2Defeated && p1turn" 
       :pokemonPotions1="pokemonPotions1" v-on:click="potionByFirstPokemon" 
       @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions1}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails1.stats[0].base_stat}}</i></b></p>
@@ -20,9 +20,9 @@
       </div>
       </section>
       <div class="p2-container">
-      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[0].move.name}}</button>
-      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[1].move.name}}</button>
-      <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions2}})</button>
+      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated && p2turn" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[0].move.name}}</button>
+      <button class="p2stuff" v-if="!pokemon2Defeated && !pokemon1Defeated && p2turn" :pokemonDetails1="pokemonDetails1" :pokemonDetails2="pokemonDetails2" v-on:click="attackBySecondPokemonExtra" @click.prevent="playSound('http://soundbible.com/grab.php?id=1773&type=mp3')">{{pokemonDetails2.moves[1].move.name}}</button>
+      <button class="p2stuff" v-if="pokemonPotions2 && !pokemon2Defeated && !pokemon1Defeated && p2turn" :pokemonPotions2="pokemonPotions2" v-on:click="potionBySecondPokemon" @click.prevent="playSound('http://soundbible.com/grab.php?id=1527&type=mp3')">Use a potion ({{pokemonPotions2}})</button>
       <p class="hp">Remaining HP: <b><i>{{pokemonDetails2.stats[0].base_stat}}</i></b></p>
       </div>
   </div>
@@ -35,7 +35,7 @@ import { eventBus } from '@/main'
 export default {
   name: 'battle-result',
   props:['pokemonDetails1', 'pokemonDetails2', 'pokemonMoves1', 'pokemonMoves1Extra','pokemonMoves2', 'pokemonMoves2Extra', 
-  'pokemon1Defeated', 'pokemon2Defeated', 'pokemonPotions1', 'pokemonPotions2'],
+  'pokemon1Defeated', 'pokemon2Defeated', 'pokemonPotions1', 'pokemonPotions2', 'p1turn', 'p2turn'],
 	methods: {
 		attackByFirstPokemon(){
         if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1.pp) {
@@ -45,6 +45,8 @@ export default {
         eventBus.$emit('pokemon-1-win', payload); 
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1.pp)
+        eventBus.$emit('p1played', this.p1turn = false)
+        eventBus.$emit('p2next', this.p2turn = true)
       }},
       attackByFirstPokemonExtra(){
         if (this.pokemonDetails2.stats[0].base_stat < this.pokemonMoves1Extra.pp) {
@@ -54,9 +56,13 @@ export default {
         eventBus.$emit('pokemon-1-win', payload);
       }else{
         eventBus.$emit('set-health-p2', this.pokemonMoves1Extra.pp)
+        eventBus.$emit('p1played', this.p1turn = false)
+        eventBus.$emit('p2next', this.p2turn = true)
       }},
       potionByFirstPokemon(){
         eventBus.$emit('increase-health-p1', 15)
+        eventBus.$emit('p1played', this.p1turn = false)
+        eventBus.$emit('p2next', this.p2turn = true)
       },
     attackBySecondPokemon(){
       if (this.pokemonDetails1.stats[0].base_stat < this.pokemonMoves2.pp) {
@@ -66,6 +72,8 @@ export default {
         eventBus.$emit('pokemon-2-win', payload);
       }else{
         eventBus.$emit('set-health-p1', this.pokemonMoves2.pp)
+        eventBus.$emit('p2played', this.p2turn = false)
+        eventBus.$emit('p1next', this.p1turn = true)
       
       }},
     attackBySecondPokemonExtra(){
@@ -76,10 +84,14 @@ export default {
         eventBus.$emit('pokemon-2-win', payload);
       }else{
         eventBus.$emit('set-health-p1', this.pokemonMoves2Extra.pp)
+        eventBus.$emit('p2played', this.p2turn = false)
+        eventBus.$emit('p1next', this.p1turn = true)
       
       }},
     potionBySecondPokemon(){
       eventBus.$emit('increase-health-p2', 15)
+      eventBus.$emit('p2played', this.p2turn = false)
+      eventBus.$emit('p1next', this.p1turn = true)
     },
     playSound (sound) {
       if(sound) {
